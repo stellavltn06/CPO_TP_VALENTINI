@@ -22,11 +22,18 @@ public class Interface_Cadenas extends javax.swing.JFrame {
      * Creates new form Interface_Cadenas
      */
     public Interface_Cadenas() {
-        initComponents();
-        jeu = new Métier();
-        texte_score.setText(jeu.getTentativesEffectuees() + " sur " + jeu.getMaxTentatives());
-        texte_intro.setText("Trouvez le bon code en moins de " + jeu.getMaxTentatives() + " tentatives !");
-    }
+         this(5); // par défaut 5 tentatives = mode normal
+}
+    
+    
+    public Interface_Cadenas(int tentativesMax) {
+    initComponents();
+    jeu = new Métier(tentativesMax);
+
+    // Mise à jour des textes
+    texte_score.setText(jeu.getTentativesEffectuees() + " sur " + jeu.getMaxTentatives());
+    texte_intro.setText("Trouvez le bon code en moins de " + jeu.getMaxTentatives() + " tentatives !");
+}
    
     private void mettreAJourChiffre(javax.swing.JLabel label, boolean increment) {
         if (jeu.estPartieTerminee()) {
@@ -84,9 +91,9 @@ public class Interface_Cadenas extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         texte_intro.setFont(new java.awt.Font("Sylfaen", 1, 30)); // NOI18N
-        texte_intro.setForeground(new java.awt.Color(153, 204, 255));
+        texte_intro.setForeground(new java.awt.Color(255, 102, 153));
         texte_intro.setText("Trouver le bon code en moins de 5 tentatives !");
-        getContentPane().add(texte_intro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 730, 32));
+        getContentPane().add(texte_intro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 730, 32));
 
         texte_chiffre_0.setFont(new java.awt.Font("Sitka Text", 1, 55)); // NOI18N
         texte_chiffre_0.setForeground(new java.awt.Color(255, 102, 153));
@@ -134,7 +141,7 @@ public class Interface_Cadenas extends javax.swing.JFrame {
         getContentPane().add(texte_nb_chiffres_bas, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 396, 172, -1));
 
         texte_score.setText("score");
-        getContentPane().add(texte_score, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 43, -1));
+        getContentPane().add(texte_score, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 70, -1));
 
         texte_tentatives.setText("Tentatives :");
         getContentPane().add(texte_tentatives, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, 86, -1));

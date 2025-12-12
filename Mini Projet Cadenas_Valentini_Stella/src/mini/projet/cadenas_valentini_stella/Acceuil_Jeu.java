@@ -28,21 +28,96 @@ public class Acceuil_Jeu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bouton_difficile = new javax.swing.JButton();
+        Texte_Accueil = new javax.swing.JLabel();
+        bouton_normal = new javax.swing.JButton();
+        bouton_facile = new javax.swing.JButton();
+        texte_niveaux = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        bouton_difficile.setText("Difficile : 3 Tentatives ");
+        bouton_difficile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bouton_difficileActionPerformed(evt);
+            }
+        });
+
+        Texte_Accueil.setFont(new java.awt.Font("Segoe UI Historic", 1, 18)); // NOI18N
+        Texte_Accueil.setForeground(new java.awt.Color(255, 102, 153));
+        Texte_Accueil.setText("Bonjour et bienvenue dans ce jeu !");
+
+        bouton_normal.setText("Normal : 5 Tentatives");
+        bouton_normal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bouton_normalActionPerformed(evt);
+            }
+        });
+
+        bouton_facile.setText("Facile : 10 Tentatives");
+        bouton_facile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bouton_facileActionPerformed(evt);
+            }
+        });
+
+        texte_niveaux.setText("Veuillez choisir la difficulté choisie : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(bouton_difficile)
+                .addGap(78, 78, 78)
+                .addComponent(bouton_normal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addComponent(bouton_facile)
+                .addGap(93, 93, 93))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(texte_niveaux, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(Texte_Accueil)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(Texte_Accueil)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(texte_niveaux)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bouton_difficile)
+                    .addComponent(bouton_normal)
+                    .addComponent(bouton_facile))
+                .addGap(101, 101, 101))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bouton_difficileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_difficileActionPerformed
+        new Interface_Cadenas(3).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bouton_difficileActionPerformed
+
+    private void bouton_facileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_facileActionPerformed
+        new Interface_Cadenas(10).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bouton_facileActionPerformed
+
+    private void bouton_normalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_normalActionPerformed
+        new Interface_Cadenas(5).setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_bouton_normalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +145,10 @@ public class Acceuil_Jeu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Texte_Accueil;
+    private javax.swing.JButton bouton_difficile;
+    private javax.swing.JButton bouton_facile;
+    private javax.swing.JButton bouton_normal;
+    private javax.swing.JLabel texte_niveaux;
     // End of variables declaration//GEN-END:variables
 }

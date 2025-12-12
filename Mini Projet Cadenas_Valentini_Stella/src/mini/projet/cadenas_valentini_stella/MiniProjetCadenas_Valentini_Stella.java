@@ -14,7 +14,7 @@ public class MiniProjetCadenas_Valentini_Stella {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new Interface_Cadenas().setVisible(true);
+        new Acceuil_Jeu().setVisible(true);
     }
     
 }
