@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package chevauchée_fantastique_valentini;
+        import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,13 +15,62 @@ public class Jeu extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Jeu.class.getName());
 
+        private Plateau plateau;
+        private javax.swing.JButton[][] boutons;
+    
     /**
      * Creates new form Jeu
      */
     public Jeu() {
         initComponents();
+        initialiserJeu();
+
     }
 
+    private void initialiserJeu() {
+    plateau = new Plateau(6); // 6x6
+    boutons = new javax.swing.JButton[][]{
+        {Case1, Case2, Case3, Case4, Case5, Case6},
+        {Case7, Case8, Case9, Case10, Case11, Case12},
+        {Case13, Case14, Case15, Case16, Case17, Case18},
+        {Case19, Case20, Case21, Case22, Case23, Case24},
+        {Case25, Case26, Case27, Case28, Case29, Case30},
+        {Case31, Case32, Case33, Case34, Case35, Case36}
+    };
+
+    mettreAJourAffichage();
+}
+private void mettreAJourAffichage() {
+    for (int i = 0; i < plateau.getTaille(); i++) {
+        for (int j = 0; j < plateau.getTaille(); j++) {
+
+            if (!plateau.getCase(i, j).estAllumee()) {
+                boutons[i][j].setEnabled(false);
+            }
+
+            if (plateau.getCavalier().getX() == i &&
+                plateau.getCavalier().getY() == j) {
+                boutons[i][j].setText("♞");
+            } else {
+                boutons[i][j].setText("");
+            }
+        }
+    }
+}
+
+private void clicCase(int x, int y) {
+    if (plateau.deplacementValide(x, y)) {
+        plateau.deplacerCavalier(x, y);
+        mettreAJourAffichage();
+
+        if (plateau.victoire()) {
+            JOptionPane.showMessageDialog(this,
+                "Bravo ! Vous avez gagné 🎉",
+                "Victoire",
+                JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,46 +122,105 @@ public class Jeu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.GridLayout(7, 6));
 
-        Case1.setText("jButton1");
+        Case1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case1);
 
-        Case2.setText("jButton2");
+        Case2.setBackground(new java.awt.Color(255, 204, 204));
+        Case2.setForeground(new java.awt.Color(255, 153, 153));
+        Case2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case2);
 
-        Case3.setText("jButton3");
+        Case3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case3);
 
-        Case4.setText("jButton4");
+        Case4.setBackground(new java.awt.Color(255, 204, 204));
+        Case4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case4);
 
-        Case5.setText("jButton5");
+        Case5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case5);
 
-        Case6.setText("jButton6");
+        Case6.setBackground(new java.awt.Color(255, 204, 204));
+        Case6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case6);
 
-        Case7.setText("jButton7");
+        Case7.setBackground(new java.awt.Color(255, 204, 204));
+        Case7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case7ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case7);
 
-        Case8.setText("jButton1");
+        Case8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case8ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case8);
 
-        Case9.setText("jButton1");
+        Case9.setBackground(new java.awt.Color(255, 204, 204));
+        Case9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case9ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case9);
 
-        Case10.setText("jButton1");
+        Case10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case10ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case10);
 
-        Case11.setText("jButton1");
+        Case11.setBackground(new java.awt.Color(255, 204, 204));
+        Case11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case11ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case11);
 
-        Case12.setText("jButton1");
+        Case12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case12ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case12);
 
-        Case13.setText("jButton1");
+        Case13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case13ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case13);
 
-        Case14.setText("jButton1");
+        Case14.setBackground(new java.awt.Color(255, 204, 204));
         Case14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Case14ActionPerformed(evt);
@@ -119,22 +228,44 @@ public class Jeu extends javax.swing.JFrame {
         });
         getContentPane().add(Case14);
 
-        Case15.setText("jButton1");
+        Case15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case15ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case15);
 
-        Case16.setText("jButton1");
+        Case16.setBackground(new java.awt.Color(255, 204, 204));
+        Case16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case16ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case16);
 
-        Case17.setText("jButton1");
+        Case17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case17ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case17);
 
-        Case18.setText("jButton1");
+        Case18.setBackground(new java.awt.Color(255, 204, 204));
+        Case18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case18ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case18);
 
-        Case19.setText("jButton1");
+        Case19.setBackground(new java.awt.Color(255, 204, 204));
+        Case19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case19ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case19);
 
-        Case20.setText("jButton1");
         Case20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Case20ActionPerformed(evt);
@@ -142,13 +273,22 @@ public class Jeu extends javax.swing.JFrame {
         });
         getContentPane().add(Case20);
 
-        Case21.setText("jButton1");
+        Case21.setBackground(new java.awt.Color(255, 204, 204));
+        Case21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case21ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case21);
 
-        Case22.setText("jButton1");
+        Case22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case22ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case22);
 
-        Case23.setText("jButton1");
+        Case23.setBackground(new java.awt.Color(255, 204, 204));
         Case23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Case23ActionPerformed(evt);
@@ -156,10 +296,13 @@ public class Jeu extends javax.swing.JFrame {
         });
         getContentPane().add(Case23);
 
-        Case24.setText("jButton1");
+        Case24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case24ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case24);
 
-        Case25.setText("jButton1");
         Case25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Case25ActionPerformed(evt);
@@ -167,7 +310,7 @@ public class Jeu extends javax.swing.JFrame {
         });
         getContentPane().add(Case25);
 
-        Case26.setText("jButton1");
+        Case26.setBackground(new java.awt.Color(255, 204, 204));
         Case26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Case26ActionPerformed(evt);
@@ -175,22 +318,44 @@ public class Jeu extends javax.swing.JFrame {
         });
         getContentPane().add(Case26);
 
-        Case27.setText("jButton1");
+        Case27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case27ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case27);
 
-        Case28.setText("jButton1");
+        Case28.setBackground(new java.awt.Color(255, 204, 204));
+        Case28.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case28ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case28);
 
-        Case29.setText("jButton1");
+        Case29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case29ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case29);
 
-        Case30.setText("jButton1");
+        Case30.setBackground(new java.awt.Color(255, 204, 204));
+        Case30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case30ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case30);
 
-        Case31.setText("jButton1");
+        Case31.setBackground(new java.awt.Color(255, 204, 204));
+        Case31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case31ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case31);
 
-        Case32.setText("jButton1");
         Case32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Case32ActionPerformed(evt);
@@ -198,21 +363,41 @@ public class Jeu extends javax.swing.JFrame {
         });
         getContentPane().add(Case32);
 
-        Case33.setText("jButton1");
+        Case33.setBackground(new java.awt.Color(255, 204, 204));
+        Case33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case33ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case33);
 
-        Case34.setText("jButton1");
+        Case34.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case34ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case34);
 
-        Case35.setText("jButton1");
+        Case35.setBackground(new java.awt.Color(255, 204, 204));
+        Case35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case35ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case35);
 
-        Case36.setText("jButton1");
+        Case36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Case36ActionPerformed(evt);
+            }
+        });
         getContentPane().add(Case36);
 
+        bouton_quitter.setBackground(new java.awt.Color(255, 255, 204));
         bouton_quitter.setText("Quitter");
         getContentPane().add(bouton_quitter);
 
+        bouton_recommencer.setBackground(new java.awt.Color(255, 255, 204));
         bouton_recommencer.setText("Recommencer");
         bouton_recommencer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,28 +415,182 @@ public class Jeu extends javax.swing.JFrame {
     }//GEN-LAST:event_bouton_recommencerActionPerformed
 
     private void Case14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case14ActionPerformed
+    clicCase(2, 1);  
         // TODO add your handling code here:
     }//GEN-LAST:event_Case14ActionPerformed
 
     private void Case20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case20ActionPerformed
+    clicCase(3, 1);  
         // TODO add your handling code here:
     }//GEN-LAST:event_Case20ActionPerformed
 
     private void Case23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case23ActionPerformed
+    clicCase(3, 4);  
         // TODO add your handling code here:
     }//GEN-LAST:event_Case23ActionPerformed
 
     private void Case25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case25ActionPerformed
+    clicCase(4, 0);  
         // TODO add your handling code here:
     }//GEN-LAST:event_Case25ActionPerformed
 
     private void Case26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case26ActionPerformed
+    clicCase(4, 1); 
         // TODO add your handling code here:
     }//GEN-LAST:event_Case26ActionPerformed
 
     private void Case32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case32ActionPerformed
+    clicCase(5, 1); 
         // TODO add your handling code here:
     }//GEN-LAST:event_Case32ActionPerformed
+
+    private void Case1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case1ActionPerformed
+    clicCase(0, 0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case1ActionPerformed
+
+    private void Case15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case15ActionPerformed
+    clicCase(2, 3);  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case15ActionPerformed
+
+    private void Case6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case6ActionPerformed
+        clicCase(0, 5);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case6ActionPerformed
+
+    private void Case16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case16ActionPerformed
+    clicCase(2, 3);  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case16ActionPerformed
+
+    private void Case2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case2ActionPerformed
+    clicCase(0, 1);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case2ActionPerformed
+
+    private void Case3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case3ActionPerformed
+    clicCase(0, 2);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case3ActionPerformed
+
+    private void Case4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case4ActionPerformed
+        clicCase(0, 3);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case4ActionPerformed
+
+    private void Case5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case5ActionPerformed
+        clicCase(0, 4);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case5ActionPerformed
+
+    private void Case7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case7ActionPerformed
+        clicCase(1, 0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case7ActionPerformed
+
+    private void Case8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case8ActionPerformed
+        clicCase(1, 1);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case8ActionPerformed
+
+    private void Case9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case9ActionPerformed
+        clicCase(1, 2);
+    }//GEN-LAST:event_Case9ActionPerformed
+
+    private void Case10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case10ActionPerformed
+        clicCase(1, 3);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case10ActionPerformed
+
+    private void Case11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case11ActionPerformed
+    clicCase(1, 4);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case11ActionPerformed
+
+    private void Case12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case12ActionPerformed
+    clicCase(1, 5);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case12ActionPerformed
+
+    private void Case13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case13ActionPerformed
+    clicCase(2, 0);       // TODO add your handling code here:
+    }//GEN-LAST:event_Case13ActionPerformed
+
+    private void Case17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case17ActionPerformed
+    clicCase(2, 4);  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case17ActionPerformed
+
+    private void Case18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case18ActionPerformed
+    clicCase(2, 5);  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case18ActionPerformed
+
+    private void Case19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case19ActionPerformed
+    clicCase(3, 0);  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case19ActionPerformed
+
+    private void Case21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case21ActionPerformed
+    clicCase(3, 2);  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case21ActionPerformed
+
+    private void Case22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case22ActionPerformed
+
+    clicCase(3, 3);          // TODO add your handling code here:
+    }//GEN-LAST:event_Case22ActionPerformed
+
+    private void Case24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case24ActionPerformed
+    clicCase(3, 5);  
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case24ActionPerformed
+
+    private void Case27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case27ActionPerformed
+    clicCase(4, 2); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case27ActionPerformed
+
+    private void Case28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case28ActionPerformed
+    clicCase(4, 3); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case28ActionPerformed
+
+    private void Case29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case29ActionPerformed
+    clicCase(4, 4); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case29ActionPerformed
+
+    private void Case30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case30ActionPerformed
+    clicCase(4, 5); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case30ActionPerformed
+
+    private void Case31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case31ActionPerformed
+    clicCase(5, 0); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case31ActionPerformed
+
+    private void Case33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case33ActionPerformed
+    clicCase(5, 2); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case33ActionPerformed
+
+    private void Case34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case34ActionPerformed
+    clicCase(5, 3); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case34ActionPerformed
+
+    private void Case35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case35ActionPerformed
+    clicCase(5, 4); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case35ActionPerformed
+
+    private void Case36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case36ActionPerformed
+    clicCase(5, 5); 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Case36ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,3 +658,4 @@ public class Jeu extends javax.swing.JFrame {
     private javax.swing.JButton bouton_recommencer;
     // End of variables declaration//GEN-END:variables
 }
+
