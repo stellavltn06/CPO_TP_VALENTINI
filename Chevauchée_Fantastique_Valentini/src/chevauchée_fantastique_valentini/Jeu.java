@@ -4,6 +4,8 @@
  */
 package chevauchée_fantastique_valentini;
         import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Font;
 
 /**
  *
@@ -17,18 +19,32 @@ public class Jeu extends javax.swing.JFrame {
 
         private Plateau plateau;
         private javax.swing.JButton[][] boutons;
+
     
     /**
      * Creates new form Jeu
      */
-    public Jeu() {
-        initComponents();
-        initialiserJeu();
+public Jeu() {
+    initComponents();
 
+    // 👇 force une taille correcte des boutons
+    for (javax.swing.JButton b : new javax.swing.JButton[]{
+        Case1, Case2, Case3, Case4, Case5, Case6,
+        Case7, Case8, Case9, Case10, Case11, Case12,
+        Case13, Case14, Case15, Case16, Case17, Case18,
+        Case19, Case20, Case21, Case22, Case23, Case24,
+        Case25, Case26, Case27, Case28, Case29, Case30,
+        Case31, Case32, Case33, Case34, Case35, Case36
+    }) {
+        b.setPreferredSize(new java.awt.Dimension(80, 80));
     }
 
-    private void initialiserJeu() {
-    plateau = new Plateau(6); // 6x6
+    initialiserJeu();
+}
+
+private void initialiserJeu() {
+    plateau = new Plateau(6);
+
     boutons = new javax.swing.JButton[][]{
         {Case1, Case2, Case3, Case4, Case5, Case6},
         {Case7, Case8, Case9, Case10, Case11, Case12},
@@ -40,20 +56,37 @@ public class Jeu extends javax.swing.JFrame {
 
     mettreAJourAffichage();
 }
+
 private void mettreAJourAffichage() {
+    // Définition des couleurs
+    Color roseAllumee = new Color(255, 204, 204);
+    Color roseEteinte = new Color(200, 200, 200); // gris clair pour contraste
+    Color blancAllume = Color.WHITE;
+    Color blancEteint = new Color(220, 220, 220); // gris clair pour contraste
+
     for (int i = 0; i < plateau.getTaille(); i++) {
         for (int j = 0; j < plateau.getTaille(); j++) {
+            Damier casePlateau = plateau.getCase(i, j);
 
-            if (!plateau.getCase(i, j).estAllumee()) {
-                boutons[i][j].setEnabled(false);
+            // Choix de la couleur de fond en fonction du damier et de l'état de la case
+            Color couleurBase = (i + j) % 2 == 0 ? roseAllumee : blancAllume;
+            if (!casePlateau.estAllumee()) {
+                couleurBase = (i + j) % 2 == 0 ? roseEteinte : blancEteint;
             }
+            boutons[i][j].setBackground(couleurBase);
 
-            if (plateau.getCavalier().getX() == i &&
-                plateau.getCavalier().getY() == j) {
+            // Affichage du cavalier
+            if (plateau.getCavalier().getX() == i && plateau.getCavalier().getY() == j) {
                 boutons[i][j].setText("♞");
+                boutons[i][j].setFont(new java.awt.Font("Serif", java.awt.Font.BOLD, 36));
+                boutons[i][j].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                boutons[i][j].setVerticalAlignment(javax.swing.SwingConstants.CENTER);
             } else {
                 boutons[i][j].setText("");
             }
+
+            // Activer ou désactiver le bouton selon l'état
+            boutons[i][j].setEnabled(casePlateau.estAllumee());
         }
     }
 }
@@ -395,6 +428,11 @@ private void clicCase(int x, int y) {
 
         bouton_quitter.setBackground(new java.awt.Color(255, 255, 204));
         bouton_quitter.setText("Quitter");
+        bouton_quitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bouton_quitterActionPerformed(evt);
+            }
+        });
         getContentPane().add(bouton_quitter);
 
         bouton_recommencer.setBackground(new java.awt.Color(255, 255, 204));
@@ -410,7 +448,8 @@ private void clicCase(int x, int y) {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bouton_recommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_recommencerActionPerformed
-
+        plateau = new Plateau(6); // recrée un nouveau plateau
+        mettreAJourAffichage();   // met à jour l'affichage des boutons
     // TODO add your handling code here:
     }//GEN-LAST:event_bouton_recommencerActionPerformed
 
@@ -450,7 +489,7 @@ private void clicCase(int x, int y) {
     }//GEN-LAST:event_Case1ActionPerformed
 
     private void Case15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Case15ActionPerformed
-    clicCase(2, 3);  
+    clicCase(2, 2);  
         // TODO add your handling code here:
     }//GEN-LAST:event_Case15ActionPerformed
 
@@ -591,6 +630,11 @@ private void clicCase(int x, int y) {
     clicCase(5, 5); 
         // TODO add your handling code here:
     }//GEN-LAST:event_Case36ActionPerformed
+
+    private void bouton_quitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouton_quitterActionPerformed
+        System.exit(0); // quitte complètement le programme
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bouton_quitterActionPerformed
 
     /**
      * @param args the command line arguments
