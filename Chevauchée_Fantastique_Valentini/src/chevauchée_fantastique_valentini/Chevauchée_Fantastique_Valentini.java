@@ -18,7 +18,7 @@ public class Chevauchée_Fantastique_Valentini {
         int taille = 6;
 
         // Crée et affiche la fenêtre de jeu
-        new Jeu(taille);
+        new Jeu().setVisible(true);
     }
     
 }
