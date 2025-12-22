@@ -17,8 +17,8 @@ public class Chevauchée_Fantastique_Valentini {
         // Taille du damier, par exemple 6
         int taille = 6;
 
-        // Crée et affiche la fenêtre de jeu
-        new Jeu().setVisible(true);
+    
+     new Acceuil().setVisible(true); // affiche la page d'accueil
     }
     
 }
