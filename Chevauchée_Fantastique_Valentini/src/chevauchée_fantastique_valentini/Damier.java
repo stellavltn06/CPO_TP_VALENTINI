@@ -24,4 +24,8 @@ public class Damier {
         allumee = false;
     }
     
+    public void allumer() {
+        allumee = true;
+    }
+    
 }

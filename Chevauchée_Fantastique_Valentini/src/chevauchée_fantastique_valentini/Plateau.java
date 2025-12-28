@@ -4,6 +4,8 @@
  */
 package chevauchée_fantastique_valentini;
 
+import java.util.Stack;
+
 /**
  *
  * @author stell
@@ -13,8 +15,14 @@ public class Plateau {
     private Cavalier cavalier;
     private int lignes;
     private int colonnes;
+    private final int[] deplacementsX = { -2, -1, 1, 2, 2, 1, -1, -2 };
+    private final int[] deplacementsY = { 1, 2, 2, 1, -1, -2, -2, -1 };
+    private int ancienX = -1;
+    private int ancienY = -1;
+    private Stack<int[]> historique;
 
     public Plateau(int lignes, int colonnes) {
+        historique = new Stack<>();
         this.lignes = lignes;
         this.colonnes = colonnes;
 
@@ -70,11 +78,17 @@ public boolean deplacementValide(int x, int y) {
 
 // Déplace réellement le cavalier
 public void deplacerCavalier(int x, int y) {
-    // éteint l'ancienne case
-    damier[cavalier.getX()][cavalier.getY()].eteindre();
+    
+    historique.push(new int[] {
+    cavalier.getX(),
+    cavalier.getY()
+});
 
-    // déplace le cavalier
+    ancienX = cavalier.getX();
+    ancienY = cavalier.getY();
     cavalier.deplacer(x, y);
+    damier[x][y].eteindre();
+
 }
 
 public boolean victoire() {
@@ -88,5 +102,31 @@ public boolean victoire() {
     }
     return true; // toutes les cases sont éteintes => victoire
 }
+
+public boolean estBloque() {
+    for (int dx : deplacementsX) {
+        for (int dy : deplacementsY) {
+            int nx = cavalier.getX() + dx;
+            int ny = cavalier.getY() + dy;
+            if (deplacementValide(nx, ny) && damier[nx][ny].estAllumee()) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+public void retourCoupPrecedent() {
+    if (!historique.isEmpty()) {
+        int[] precedent = historique.pop();
+
+        // rallumer la case actuelle
+        damier[cavalier.getX()][cavalier.getY()].allumer();
+
+        // revenir à l'ancienne position
+        cavalier.deplacer(precedent[0], precedent[1]);
+    }
+}
+
 
 }

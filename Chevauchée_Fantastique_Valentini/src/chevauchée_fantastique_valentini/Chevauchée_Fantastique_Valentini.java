@@ -14,10 +14,6 @@ public class Chevauchée_Fantastique_Valentini {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // Taille du damier, par exemple 6
-        int taille = 6;
-
-    
      new Acceuil().setVisible(true); // affiche la page d'accueil
     }
     
